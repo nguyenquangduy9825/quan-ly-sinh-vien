@@ -10,7 +10,7 @@ class sinhvien{
         if(this.diem>=8){
             return "giỏi"
         }
-        if(this.diem>=6,5){
+        if(this.diem>=6.5){
             return "khá"
         }
         if(this.diem>=5){
