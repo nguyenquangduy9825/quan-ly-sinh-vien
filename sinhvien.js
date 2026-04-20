@@ -1,5 +1,5 @@
 class sinhvien{
-    constructor(ten,tuoi,diachi,masv,diem=[]){
+    constructor(ten,tuoi,diachi,masv,diem){
         this.ten=ten;
         this.tuoi=tuoi;
         this.diachi=diachi;
