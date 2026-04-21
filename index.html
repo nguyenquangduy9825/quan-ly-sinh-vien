@@ -58,10 +58,25 @@
                     <tr>
             `
         }
-       
-
     }
     hienthi();
+    window.timkiem=function(){
+        let tim1=document.getElementById("tim").value.toLowerCase();
+        let ds=ql.laydanhsach();
+        let ketqua=[];
+        if(tim1===""){
+            alert("mời bạn nhập tên vào ")
+            return;
+        }
+        for(let i=0;i<ds.length;i++){
+          if(ds[i].ten.toLowerCase().includes(tim1)){
+            ketqua.push(ds[i])
+          }
+        
+        }
+        hienthi(ketqua);
+        
+    }
     
 </script>
 
