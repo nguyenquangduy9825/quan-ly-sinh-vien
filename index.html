@@ -36,6 +36,7 @@
     import quanly from "./quanly.js";
     import { dataSV } from "./data.js";
     let ql=new quanly();
+    let suathongtin = null;
     for(let i=0;i<dataSV.length;i++){
         ql.themsv(dataSV[i]);
     }
@@ -51,7 +52,7 @@
              <td>${ds[i].diem}</td>
              
              <td>
-        <button onclick="load('${ds[i].masv}')">Sửa</button>
+        <button onclick="sua1('${ds[i].masv}')">Sửa</button>
         <button onclick="xoa('${ds[i].masv}')">Xóa</button>
     </td>
      
@@ -76,6 +77,44 @@
         }
         hienthi(ketqua);
         
+    }
+    window.sua1=function(masv){
+        let ds=ql.laydanhsach();
+        for(let i=0;i<ds.length;i++){
+            if(ds[i].masv===masv){
+    document.getElementById("ten").value=ds[i].ten;
+    document.getElementById("tuoi").value=ds[i].tuoi;
+    document.getElementById("diachi").value=ds[i].diachi;
+    document.getElementById("masv").value=ds[i].masv;
+    document.getElementById("diem").value=ds[i].diem;
+    suathongtin=masv;
+    break;
+}
+    }}
+    window.sua=function(){
+        let ds=ql.laydanhsach();
+        for(let i=0 ; i<ds.length;i++){
+            if(ds[i].masv===suathongtin){
+            ds[i].ten = document.getElementById("ten").value;
+            ds[i].tuoi = document.getElementById("tuoi").value;
+            ds[i].diachi = document.getElementById("diachi").value;
+            ds[i].masv = document.getElementById("masv").value;
+            ds[i].diem = document.getElementById("diem").value;
+            break;
+
+            }
+             
+        }
+    ql.suasv(ds); 
+    hienthi(ds);         
+    document.getElementById("ten").value = "";
+    document.getElementById("tuoi").value = "";
+    document.getElementById("diachi").value = "";
+    document.getElementById("masv").value = "";
+    document.getElementById("diem").value = "";
+    suathongtin=null;
+
+
     }
     
 </script>
