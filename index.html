@@ -6,6 +6,64 @@
     <title>Document</title>
 </head>
 <body>
+<h1>QUẢN LÍ SINH VIÊN </h1>
+<input id="tim" placeholder="tìm kiếm">
+<button onclick="timkiem()">Tìm</button>
+<br><br>
+<input id="ten" placeholder="tên">
+<input id="tuoi" placeholder="tuổi">
+<input id="diachi" placeholder="địa chỉ">
+<input id="masv" placeholder="mã sinh viên">
+<input id="diem" placeholder="điểm">
+<br><br>
+<button onclick="them()">Thêm</button>
+<button onclick="sua()">Sửa</button>
+<br><br>
+<table border="1">
+    <thead>
+        <tr>
+            <th>MASV</th>
+            <th>TÊN</th>
+            <th>TUỔi</th>
+            <th>ĐỊA CHỈ</th>
+            <th>ĐIỂM</th>
+            <th>HÀNH ĐỘNG</th>
+        </tr>
+    </thead>
+<tbody id="bang"></tbody>
+</table>
+<script type="module">
+    import quanly from "./quanly.js";
+    import { dataSV } from "./data.js";
+    let ql=new quanly();
+    for(let i=0;i<dataSV.length;i++){
+        ql.themsv(dataSV[i]);
+    }
+    function hienthi(ds=ql.laydanhsach()){
+        let bang=document.getElementById("bang");
+        bang.innerHTML="";
+        for(let i=0;i<ds.length;i++){
+           bang.innerHTML+=`<tr>
+             <td>${ds[i].masv}</td>
+             <td>${ds[i].ten}</td>
+             <td>${ds[i].tuoi}</td>
+             <td>${ds[i].diachi}</td>
+             <td>${ds[i].diem}</td>
+             
+             <td>
+        <button onclick="load('${ds[i].masv}')">Sửa</button>
+        <button onclick="xoa('${ds[i].masv}')">Xóa</button>
+    </td>
+     
+                    <tr>
+            `
+        }
+       
+
+    }
+    hienthi();
     
+</script>
+
 </body>
 </html>
