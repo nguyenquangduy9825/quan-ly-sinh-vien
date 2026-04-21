@@ -1,5 +1,4 @@
-class quanly{
-    constructor(){
+ export default class quanly{    constructor(){
         this.danhsach=[];
     }
     themsv(sv){
@@ -37,7 +36,9 @@ class quanly{
             sv.tuoi = tuoi;
             sv.diachi = diachi;
             sv.diem = diem;
+            return true ;
         }
+        return false;
         }
     }
 
