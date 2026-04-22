@@ -63,21 +63,14 @@
     hienthi();
     window.timkiem=function(){
         let tim1=document.getElementById("tim").value.toLowerCase();
-        let ds=ql.laydanhsach();
-        let ketqua=[];
-        if(tim1===""){
+    if(tim1===""){
             alert("mời bạn nhập tên vào ")
             return;
         }
-        for(let i=0;i<ds.length;i++){
-          if(ds[i].ten.toLowerCase().includes(tim1)){
-            ketqua.push(ds[i])
-          }
-        
+        let ketqua=ql.timkiemsv(tim1);
+        hienthi(ketqua)
         }
-        hienthi(ketqua);
-        
-    }
+      
     window.sua1=function(masv){
         let ds=ql.laydanhsach();
         for(let i=0;i<ds.length;i++){
@@ -91,31 +84,56 @@
     break;
 }
     }}
-    window.sua=function(){
-        let ds=ql.laydanhsach();
-        for(let i=0 ; i<ds.length;i++){
-            if(ds[i].masv===suathongtin){
-            ds[i].ten = document.getElementById("ten").value;
-            ds[i].tuoi = document.getElementById("tuoi").value;
-            ds[i].diachi = document.getElementById("diachi").value;
-            ds[i].masv = document.getElementById("masv").value;
-            ds[i].diem = document.getElementById("diem").value;
-            break;
+    window.sua = function(){
 
-            }
-             
-        }
-    ql.suasv(ds); 
-    hienthi(ds);         
+    let svMoi = {
+        ten: document.getElementById("ten").value,
+        tuoi: document.getElementById("tuoi").value,
+        diachi: document.getElementById("diachi").value,
+        masv: document.getElementById("masv").value,
+        diem: document.getElementById("diem").value
+    };
+    let kq = ql.suasv(suathongtin,svMoi);
+    if(kq){
+        alert("Sửa thành công");
+    }else{
+        alert("Không tìm thấy sinh viên");
+    }
+
+    hienthi(ql.laydanhsach()); 
     document.getElementById("ten").value = "";
     document.getElementById("tuoi").value = "";
     document.getElementById("diachi").value = "";
     document.getElementById("masv").value = "";
     document.getElementById("diem").value = "";
     suathongtin=null;
-
-
     }
+  window.xoa=function(masv){
+  let ketqua= ql.xoasv(masv);
+  if(ketqua){
+    alert("bạn đã xóa thành công")
+    
+  }
+  else{
+    alert("bạn xóa ko thành công")
+  }
+  let dsmoi=ql.laydanhsach();
+ql.luudanhsach(dsmoi);
+hienthi(dsmoi);
+
+  }
+window.them=function(){
+    let sv={
+    ten: document.getElementById("ten").value,
+    tuoi: document.getElementById("tuoi").value,
+    diachi: document.getElementById("diachi").value,
+    masv: document.getElementById("masv").value,
+    diem: document.getElementById("diem").value
+};
+    ql.themsv(sv);
+    let ketqua=ql.laydanhsach();
+    hienthi(ketqua);
+}
     
 </script>
 

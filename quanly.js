@@ -7,19 +7,16 @@
     laydanhsach(){
         return this.danhsach
     }
-    timkiemsv(masv){
-    let ketqua=this.danhsach.find(function(sv){
-        if(sv.masv===masv){
+    timkiemsv(ten){
+    let ketqua = this.danhsach.filter(function(sv){
+        if (sv.ten.toLowerCase().includes(ten.toLowerCase())) {
             return true;
         }
-        else{
-            return false;
-
-        }
+        return false;
     });
+
     return ketqua;
-           
-    }
+}
     xoasv(masv){
     for (let i = 0; i < this.danhsach.length; i++) {
         if (this.danhsach[i].masv === masv) {
@@ -29,16 +26,17 @@
     }
     return false;
     }
-    suasv(ten,tuoi,diachi,masv,diem){
-        let sv=this.timkiemsv(masv)
-              if(sv){
-            sv.ten = ten;
-            sv.tuoi = tuoi;
-            sv.diachi = diachi;
-            sv.diem = diem;
-            return true ;
+   suasv(masv, svMoi){
+    for(let i = 0; i < this.danhsach.length; i++){
+        if(this.danhsach[i].masv === masv){
+            this.danhsach[i] = svMoi;
+            return true;
         }
-        return false;
+    }
+    return false;
+}
+        luudanhsach(ds){
+            return this.danhsach=ds;
         }
     }
 
